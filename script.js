@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  const apiRoot = 'https://hidden-reaches-27383.herokuapp.com/v1/task/';
+  const apiRoot = 'https://hidden-reaches-27383.herokuapp.com/v1/';
   const trelloApiRoot = 'https://hidden-reaches-27383.herokuapp.com/v1/trello/';
   const datatableRowTemplate = $('[data-datatable-row-template]').children()[0];
   const $tasksContainer = $('[data-tasks-container]');
@@ -63,7 +63,7 @@ $(document).ready(function() {
   }
 
   function getAllTasks() {
-    const requestUrl = apiRoot + 'getTasks';
+    const requestUrl = apiRoot + 'tasks';
 
     $.ajax({
       url: requestUrl,
@@ -84,7 +84,7 @@ $(document).ready(function() {
     var taskId = parentEl.attr('data-task-id');
     var taskTitle = parentEl.find('[data-task-name-input]').val();
     var taskContent = parentEl.find('[data-task-content-input]').val();
-    var requestUrl = apiRoot + 'updateTask';
+    var requestUrl = apiRoot + 'tasks';
 
     $.ajax({
       url: requestUrl,
@@ -108,10 +108,10 @@ $(document).ready(function() {
   function handleTaskDeleteRequest() {
     var parentEl = $(this).parents('[data-task-id]');
     var taskId = parentEl.attr('data-task-id');
-    var requestUrl = apiRoot + 'deleteTask';
+    var requestUrl = apiRoot + 'tasks';
 
     $.ajax({
-      url: requestUrl + '/?' + $.param({
+      url: requestUrl + '/' + $.param({
         taskId: taskId
       }),
       method: 'DELETE',
